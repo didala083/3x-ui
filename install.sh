@@ -135,7 +135,7 @@ install_x-ui() {
     cd /usr/local/
 
     if [ $# == 0 ]; then
-        last_version=$(curl -Ls "https://api.github.com/repos/MHSanaei/3x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/didala083/3x-ui/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
             echo -e "${red}Failed to fetch x-ui version, it maybe due to Github API restrictions, please try it later${plain}"
             exit 1
@@ -148,7 +148,7 @@ install_x-ui() {
         fi
     else
         last_version=$1
-        url="https://github.com/MHSanaei/3x-ui/releases/download/${last_version}/x-ui-linux-$(arch3xui).tar.gz"
+        url="https://github.com/didala083/3x-ui/releases/download/${last_version}/x-ui-linux-$(arch3xui).tar.gz"
         echo -e "Beginning to install x-ui $1"
         wget -N --no-check-certificate -O /usr/local/x-ui-linux-$(arch3xui).tar.gz ${url}
         if [[ $? -ne 0 ]]; then
@@ -175,7 +175,7 @@ install_x-ui() {
 
     chmod +x x-ui bin/xray-linux-$(arch3xui)
     cp -f x-ui.service /etc/systemd/system/
-    wget --no-check-certificate -O /usr/bin/x-ui https://raw.githubusercontent.com/MHSanaei/3x-ui/main/x-ui.sh
+    wget --no-check-certificate -O /usr/bin/x-ui https://raw.githubusercontent.com/didala083/3x-ui/main/x-ui.sh
     chmod +x /usr/local/x-ui/x-ui.sh
     chmod +x /usr/bin/x-ui
     config_after_install
